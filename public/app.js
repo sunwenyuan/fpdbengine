@@ -2,7 +2,7 @@
  * Created by wenyuan on 2014-12-08.
  */
 "use strict";
-var app = angular.module('fpdbengine', []);
+var app = angular.module('fpdbengine', ['app-controllers']);
 
 app.factory('GlobalCache', ['$cacheFactory', function($cacheFactory){
   return $cacheFactory('global-cache');
@@ -10,7 +10,6 @@ app.factory('GlobalCache', ['$cacheFactory', function($cacheFactory){
 
 app.controller('AppController', ['$scope', 'GlobalCache', function($scope, GlobalCache){
   $scope.needLogIn = function(){
-    console.info(GlobalCache.get('user'));
     return GlobalCache.get('user') === undefined;
   };
 }]);

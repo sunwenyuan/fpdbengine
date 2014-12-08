@@ -11,11 +11,10 @@ html(ng-app='fpdbengine')
     script(src='/bower_components/angular/angular.js')
     script(src='/bower_components/angular-ui-router/release/angular-ui-router.js')
     script(src='/bower_components/lodash/dist/lodash.js')
+    script(src='/javascript/controllers.js')
     script(src='app.js')
   body(ng-controller='AppController')
-    div(ng-if='needLogIn()')
-      p.
-        Need login.
+    div(ng-if='needLogIn()', ng-include="'/views/login.tpl.html'")
     div(ng-if='!needLogIn()')
       p.
         Logged on.
