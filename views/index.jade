@@ -1,0 +1,21 @@
+doctype html
+html(ng-app='fpdbengine')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.css')
+    script(src='/bower_components/jquery/dist/jquery.js')
+    script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+    script(src='/bower_components/angular/angular.js')
+    script(src='/bower_components/angular-ui-router/release/angular-ui-router.js')
+    script(src='/bower_components/lodash/dist/lodash.js')
+    script(src='app.js')
+  body(ng-controller='AppController')
+    div(ng-if='needLogIn()')
+      p.
+        Need login.
+    div(ng-if='!needLogIn()')
+      p.
+        Logged on.
