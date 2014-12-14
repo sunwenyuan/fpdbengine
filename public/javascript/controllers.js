@@ -17,3 +17,37 @@ controllers.controller('LoginController', ['$scope', 'GlobalCache', function($sc
 		}
 	};
 }]);
+
+controllers.controller('DashboardController', ['$scope', '$timeout', function($scope, $timeout){
+	var tree;
+	$scope.dbData = [{
+		label: 'Database 1',
+		children: [{
+			label: 'Table 1'
+		}, {
+			label: 'Table 2'
+		}, {
+			label: 'Table 3'
+		}]
+	}, {
+		label: 'Database 2',
+		children: [{
+			label: 'Table 4'
+		}, {
+			label: 'Table 5'
+		}]
+	}];
+
+	$scope.selectedPath = [{
+		id: 'db1',
+		name: 'Database 1'
+	}, {
+		id: 'table1',
+		name: 'Table 1'
+	}];
+
+	$scope.dbTree = {};
+	$timeout(function(){
+		console.info($scope.dbTree);
+	}, 5000);
+}]);

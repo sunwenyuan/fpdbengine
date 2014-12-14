@@ -2,7 +2,7 @@
  * Created by wenyuan on 2014-12-08.
  */
 "use strict";
-var app = angular.module('fpdbengine', ['app-controllers']);
+var app = angular.module('fpdbengine', ['angularBootstrapNavTree', 'app-controllers']);
 
 app.factory('GlobalCache', ['$cacheFactory', function($cacheFactory){
   return $cacheFactory('global-cache');
