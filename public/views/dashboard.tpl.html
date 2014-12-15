@@ -12,7 +12,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Dashboard</a></li>
+                    <li><a ui-sref="createdb">Create DB</a></li>
                     <li><a href="#">Settings</a></li>
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Help</a></li>
@@ -36,18 +36,7 @@
                     </li>
                 </ol>
 
-                <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
-                    <div class="container">
-                        <div class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#">Create Database</a></li>
-                                <li><a href="#">Delete Database</a></li>
-                                <li><a href="#">Create Table</a></li>
-                                <li><a href="#">Delete Table</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
+                <div ui-view></div>
             </div>
         </div>
     </div>

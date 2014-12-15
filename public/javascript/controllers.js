@@ -51,3 +51,31 @@ controllers.controller('DashboardController', ['$scope', '$timeout', function($s
 		console.info($scope.dbTree);
 	}, 5000);
 }]);
+
+controllers.controller('CreateDBController', ['$scope', function($scope){
+	$scope.model = {
+		dbType: 'MySql',
+		dbName: '',
+		dbIpAddress: '',
+		dbPort: '',
+		dbUserName: '',
+		dbPassword: '',
+		dbCharset: 'utf-8'
+	};
+
+	$scope.resetModel = function(){
+		$scope.model = {
+			dbType: 'MySql',
+			dbName: '',
+			dbIpAddress: '',
+			dbPort: '',
+			dbUserName: '',
+			dbPassword: '',
+			dbCharset: 'utf-8'
+		};
+	};
+
+	$scope.createDatabase = function(){
+
+	};
+}]);
