@@ -10,14 +10,16 @@
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-tabs">
-                    <li role="presentation" class="active"><a href="#dbTab">DB</a></li>
-                    <li role="presentation"><a href="#sourceTab">Source</a></li>
+                    <li role="presentation" class="active"><a tab-control href="#dbTab">DB</a></li>
+                    <li role="presentation"><a tab-control href="#sourceTab">Source</a></li>
                 </ul>
-                <div id="dbTab" class="tab-pane fade in active">
-                    <abn-tree tree-data="dbData" icon-leaf="fa fa-table" tree-control="dbTree"></abn-tree>
-                </div>
-                <div id="sourceTab" class="tab-pane fade">
-                    DB Source
+                <div class="tab-content">
+                    <div id="dbTab" class="tab-pane fade in active">
+                        <abn-tree tree-data="dbData" icon-leaf="fa fa-table" tree-control="dbTree"></abn-tree>
+                    </div>
+                    <div id="sourceTab" class="tab-pane fade">
+                        DB Source
+                    </div>
                 </div>
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

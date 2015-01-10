@@ -2,7 +2,12 @@
  * Created by wenyuan on 2014-12-08.
  */
 "use strict";
-var app = angular.module('fpdbengine', ['angularBootstrapNavTree', 'app-controllers', 'ui.router']);
+var app = angular.module('fpdbengine', [
+    'angularBootstrapNavTree',
+    'app-controllers',
+    'ui.router',
+    'app-directives'
+]);
 
 app.config(function($stateProvider, $urlRouterProvider){
   $stateProvider
