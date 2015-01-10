@@ -19,8 +19,15 @@ controllers.controller('LoginController', ['$scope', 'GlobalCache', function($sc
 }]);
 
 controllers.controller('DashboardController', ['$scope', '$timeout', function($scope, $timeout){
-	var tree;
-	$scope.dbData = [{
+	$scope.model = {};
+
+	$scope.model.sourceData = [{
+		label: 'Data Source 1'
+	}, {
+		label: 'Data Source 2'
+	}];
+
+	$scope.model.dbData = [{
 		label: 'Database 1',
 		children: [{
 			label: 'Tables',
@@ -82,7 +89,7 @@ controllers.controller('DashboardController', ['$scope', '$timeout', function($s
 		}]
 	}];
 
-	$scope.selectedPath = [{
+	$scope.model.selectedPath = [{
 		id: 'db1',
 		name: 'Database 1'
 	}, {
@@ -90,7 +97,19 @@ controllers.controller('DashboardController', ['$scope', '$timeout', function($s
 		name: 'Table 1'
 	}];
 
-	$scope.dbTree = {};
+	$scope.model.dbTree = {};
+	$scope.model.sourceTree = {};
+
+
+	$scope.methods = {
+		gotoAddDatabase: function(){
+
+		},
+
+		gotoAddDataSource: function(){
+
+		}
+	};
 }]);
 
 controllers.controller('CreateDBController', ['$scope', function($scope){

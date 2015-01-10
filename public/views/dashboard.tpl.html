@@ -14,17 +14,27 @@
                     <li role="presentation"><a tab-control href="#sourceTab">Source</a></li>
                 </ul>
                 <div class="tab-content">
-                    <div id="dbTab" class="tab-pane fade in active">
-                        <abn-tree tree-data="dbData" icon-leaf="fa fa-table" tree-control="dbTree"></abn-tree>
+                    <div id="dbTab" class="tab-pane fade in active sidebar-tab-panel-container">
+                        <button ng-click="gotoAddDatabase()" class="btn btn-default">
+                            <i class="fa fa-plus-circle"></i>
+                            Add Database
+                        </button>
+                        <abn-tree tree-data="model.dbData" icon-leaf="fa fa-table"
+                                  tree-control="model.dbTree"></abn-tree>
                     </div>
-                    <div id="sourceTab" class="tab-pane fade">
-                        DB Source
+                    <div id="sourceTab" class="tab-pane fade sidebar-tab-panel-container">
+                        <button ng-click="gotoAddDataSource()" class="btn btn-default">
+                            <i class="fa fa-plus-circle"></i>
+                            Add Data Source
+                        </button>
+                        <abn-tree tree-data="model.sourceData" icon-leaf="fa fa-file-text-o"
+                                  tree-control="model.sourceTree"></abn-tree>
                     </div>
                 </div>
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <ol class="breadcrumb">
-                    <li ng-repeat="item in selectedPath">
+                    <li ng-repeat="item in model.selectedPath">
                         <a href="#">{{item.name}}</a>
                     </li>
                 </ol>
