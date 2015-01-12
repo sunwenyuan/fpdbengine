@@ -18,7 +18,7 @@ controllers.controller('LoginController', ['$scope', 'GlobalCache', function($sc
 	};
 }]);
 
-controllers.controller('DashboardController', ['$scope', '$timeout', function($scope, $timeout){
+controllers.controller('DashboardController', ['$scope', '$state',  function($scope, $state){
 	$scope.model = {};
 
 	$scope.model.sourceData = [{
@@ -107,7 +107,7 @@ controllers.controller('DashboardController', ['$scope', '$timeout', function($s
 		},
 
 		gotoAddDataSource: function(){
-
+			$state.go('createsource');
 		}
 	};
 }]);
@@ -136,6 +136,16 @@ controllers.controller('CreateDBController', ['$scope', function($scope){
 	};
 
 	$scope.createDatabase = function(){
+
+	};
+}]);
+
+controllers.controller('CreateDataSourceController', ['$scope', 'DataSource', function($scope, DataSource){
+	$scope.model = {
+		dataSource: DataSource
+	};
+
+	$scope.methods = {
 
 	};
 }]);

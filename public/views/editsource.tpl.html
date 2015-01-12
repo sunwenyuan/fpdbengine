@@ -1,0 +1,66 @@
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <label for="sourceName" class="col-sm-2 control-label">Source Name</label>
+        <div class="col-sm-10">
+            <input ng-model="model.dataSource.sourceName" type="text" class="form-control" id="sourceName"
+                   placeholder="Enter Source Name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="sourceType" class="col-sm-2 control-label">Source Type</label>
+        <div class="col-sm-10">
+            <select ng-model="model.dataSource.sourceType" id="sourceType" class="form-control">
+                <option>MySQL</option>
+                <option>MariaDB</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="sourceURL" class="col-sm-2 control-label">Source URL</label>
+        <div class="col-sm-10">
+            <input ng-model="model.dataSource.sourceURL" type="text" class="form-control" id="sourceURL"
+                   placeholder="Enter Source URL">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="sourcePort" class="col-sm-2 control-label">Source Port</label>
+        <div class="col-sm-10">
+            <input ng-model="model.dataSource.sourcePort" type="number" class="form-control" id="sourcePort"
+                   placeholder="Enter Port Number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="dbName" class="col-sm-2 control-label">Database Name</label>
+        <div class="col-sm-10">
+            <input ng-model="model.dbName" type="text" class="form-control" id="dbName" placeholder="Enter DB Name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="loginUser" class="col-sm-2 control-label">Login User</label>
+        <div class="col-sm-10">
+            <input ng-model="model.dataSource.loginUser" type="text" class="form-control" id="loginUser"
+                   placeholder="Enter Database User Name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+            <input ng-model="model.dataSource.password" type="password" class="form-control" id="password"
+                   placeholder="Enter Database Password">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="charset" class="col-sm-2 control-label">Database Charset</label>
+        <div class="col-sm-10">
+            <select ng-model="model.dataSource.charset" id="charset" class="form-control">
+                <option>UTF-8</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-10 col-sm-2">
+            <button type="button" class="btn btn-primary" ng-click="createDatabase()">Create</button>
+            <button type="button" class="btn btn-warning" ng-click="resetModel()">Reset</button>
+        </div>
+    </div>
+</form>
