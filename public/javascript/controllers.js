@@ -2,7 +2,7 @@
  * Created by Wenyuan on 2014/12/8.
  */
 "use strict";
-var controllers = angular.module('app-controllers', []);
+var controllers = angular.module('app-controllers', ['app-models']);
 
 controllers.controller('LoginController', ['$scope', 'GlobalCache', function($scope, GlobalCache){
 	$scope.userName = 'admin';
@@ -18,131 +18,49 @@ controllers.controller('LoginController', ['$scope', 'GlobalCache', function($sc
 	};
 }]);
 
-controllers.controller('DashboardController', ['$scope', '$state',  function($scope, $state){
-	$scope.model = {};
+controllers.controller('DashboardController', [
+	'$scope',
+	'$state',
+	'DataSourceList',
+	'DBList',
+	'SelectedPath',
+	function($scope, $state, DataSourceList, DBList, SelectedPath){
+		$scope.model = {
+			sourceData: DataSourceList.getData(),
+			dbData: DBList.getData(),
+			selectedPath: SelectedPath.getData()
+		};
 
-	$scope.model.sourceData = [{
-		label: 'Data Source 1'
-	}, {
-		label: 'Data Source 2'
-	}];
+		$scope.model.dbTree = {};
+		$scope.model.sourceTree = {};
 
-	$scope.model.dbData = [{
-		label: 'Database 1',
-		children: [{
-			label: 'Tables',
-			children: [{
-				label: 'Table 1'
-			}, {
-				label: 'Table 2'
-			}, {
-				label: 'Table 3'
-			}]
-		}, {
-			label: 'Interfaces',
-			children: [{
-				label: 'API1'
-			}, {
-				label: 'API2'
-			}, {
-				label: 'API3'
-			}]
-		}, {
-			label: 'Triggers',
-			children: [{
-				label: 'Trigger1'
-			}, {
-				label: 'Trigger2'
-			}, {
-				label: 'Trigger3'
-			}]
-		}]
-	}, {
-		label: 'Database 2',
-		children: [{
-			label: 'Tables',
-			children: [{
-				label: 'Table 4'
-			}, {
-				label: 'Table 5'
-			}, {
-				label: 'Table 6'
-			}]
-		}, {
-			label: 'Interfaces',
-			children: [{
-				label: 'API4'
-			}, {
-				label: 'API5'
-			}, {
-				label: 'API6'
-			}]
-		}, {
-			label: 'Triggers',
-			children: [{
-				label: 'Trigger4'
-			}, {
-				label: 'Trigger5'
-			}, {
-				label: 'Trigger6'
-			}]
-		}]
-	}];
 
-	$scope.model.selectedPath = [{
-		id: 'db1',
-		name: 'Database 1'
-	}, {
-		id: 'table1',
-		name: 'Table 1'
-	}];
+		$scope.methods = {
+			gotoAddDatabase: function(){
+				$state.go('db');
+			},
 
-	$scope.model.dbTree = {};
-	$scope.model.sourceTree = {};
+			gotoAddDataSource: function(){
+				$state.go('datasource');
+			}
+		};
+	}
+]);
 
+controllers.controller('EditDBController', ['$scope', 'DBDefinition', 'DataSourceList', function($scope, DBDefinition, DataSourceList){
+	$scope.model = {
+		db: DBDefinition.getData(),
+		dataSourceList: DataSourceList.getData()
+	};
 
 	$scope.methods = {
-		gotoAddDatabase: function(){
-
-		},
-
-		gotoAddDataSource: function(){
-			$state.go('createsource');
-		}
-	};
-}]);
-
-controllers.controller('CreateDBController', ['$scope', function($scope){
-	$scope.model = {
-		dbType: 'MySql',
-		dbName: '',
-		dbIpAddress: '',
-		dbPort: '',
-		dbUserName: '',
-		dbPassword: '',
-		dbCharset: 'utf-8'
-	};
-
-	$scope.resetModel = function(){
-		$scope.model = {
-			dbType: 'MySql',
-			dbName: '',
-			dbIpAddress: '',
-			dbPort: '',
-			dbUserName: '',
-			dbPassword: '',
-			dbCharset: 'utf-8'
-		};
-	};
-
-	$scope.createDatabase = function(){
 
 	};
 }]);
 
-controllers.controller('CreateDataSourceController', ['$scope', 'DataSource', function($scope, DataSource){
+controllers.controller('EditDataSourceController', ['$scope', 'DataSource', function($scope, DataSource){
 	$scope.model = {
-		dataSource: DataSource
+		dataSource: DataSource.getData()
 	};
 
 	$scope.methods = {
