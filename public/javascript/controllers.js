@@ -54,7 +54,29 @@ controllers.controller('EditDBController', ['$scope', 'DBDefinition', 'DataSourc
 	};
 
 	$scope.methods = {
+		gotoEditTable: function(table){
 
+		},
+
+		gotoRemoveTable: function(table){},
+
+		gotoAddTable: function(){},
+
+		gotoEditInterface: function(api){},
+
+		gotoRemoveInterface: function(api){},
+
+		gotoAddInterface: function(api){},
+
+		gotoEditTrigger: function(trigger){},
+
+		gotoRemoveTrigger: function(trigger){},
+
+		gotoAddTrigger: function(){},
+
+		saveDBDefinition: function(){},
+
+		cancelDBDefinitionEdit: function(){}
 	};
 }]);
 

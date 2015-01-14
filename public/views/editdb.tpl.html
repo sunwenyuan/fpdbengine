@@ -29,12 +29,12 @@
                     <tbody>
                         <tr ng-repeat="table in model.db.tables">
                             <td>{{table.name}}</td>
-                            <td><i class="fa fa-edit"></i></td>
-                            <td><i class="fa fa-trash"></i></td>
+                            <td><i ng-click="gotoEditTable(table)" class="fa fa-edit"></i></td>
+                            <td><i ng-click="gotoRemoveTable(table)" class="fa fa-trash"></i></td>
                         </tr>
                     </tbody>
                 </table>
-                <button class="btn btn-default">Add Table</button>
+                <button ng-click="gotoAddTable()" class="btn btn-default">Add Table</button>
             </div>
         </div>
     </div>
@@ -48,19 +48,19 @@
             <div class="content-container">
                 <table class="table">
                     <tbody>
-                    <tr ng-repeat="interface in model.db.interfaces">
-                        <td>{{interface.name}}</td>
-                        <td><i class="fa fa-edit"></i></td>
-                        <td><i class="fa fa-trash"></i></td>
+                    <tr ng-repeat="api in model.db.interfaces">
+                        <td>{{api.name}}</td>
+                        <td><i ng-click="gotoEditInterface(api)" class="fa fa-edit"></i></td>
+                        <td><i ng-click="gotoRemoveInterface(api)" class="fa fa-trash"></i></td>
                     </tr>
                     </tbody>
                 </table>
-                <button class="btn btn-default">Add Interface</button>
+                <button ng-click="gotoAddInterface()" class="btn btn-default">Add Interface</button>
             </div>
         </div>
     </div>
 </div>
-<div id="db-triggers-region" class="dbconfig-region">
+<div id="db-triggers-region" class="with-bottom-border dbconfig-region">
     <div class="row">
         <div class="col-md-2">
             <h3>Triggers</h3>
@@ -71,13 +71,19 @@
                     <tbody>
                     <tr ng-repeat="trigger in model.db.triggers">
                         <td>{{trigger.name}}</td>
-                        <td><i class="fa fa-edit"></i></td>
-                        <td><i class="fa fa-trash"></i></td>
+                        <td><i ng-click="gotoEditTrigger(trigger)" class="fa fa-edit"></i></td>
+                        <td><i ng-click="gotoRemoveTrigger(trigger)" class="fa fa-trash"></i></td>
                     </tr>
                     </tbody>
                 </table>
-                <button class="btn btn-default">Add Trigger</button>
+                <button ng-click="gotoAddTrigger()" class="btn btn-default">Add Trigger</button>
             </div>
         </div>
+    </div>
+</div>
+<div class="form-group" style="padding-top: 20px;">
+    <div class="col-sm-offset-10 col-sm-3">
+        <button type="button" class="btn btn-primary" ng-click="saveDBDefinition()">Save</button>
+        <button type="button" class="btn btn-warning" ng-click="cancelDBDefinitionEdit()">Cancel</button>
     </div>
 </div>
