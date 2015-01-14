@@ -11,8 +11,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-jade');
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-string-replace');
 
   var projectConfig = {
     applicationDir: 'public'
@@ -35,7 +33,7 @@ module.exports = function (grunt) {
             expand: true,
             cwd: '<%= project.applicationDir %>',
             src: ['stylesheets/app.less'],
-            dest: '<%= project.applicationDir %>/stylesheets',
+            dest: '<%= project.applicationDir %>',
             ext: '.css'
           }
         ]

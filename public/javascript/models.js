@@ -45,9 +45,27 @@ models.factory('DBDefinition', [function(){
 				dbName: 'DB1',
 				dataSourceName: 'Data Source 1'
 			},
-			tables: [],
-			interfaces: [],
-			triggers: []
+			tables: [{
+				name: 'Table 1'
+			}, {
+				name: 'Table 2'
+			}, {
+				name: 'Table 3'
+			}],
+			interfaces: [{
+				name: 'API1'
+			}, {
+				name: 'API2'
+			}, {
+				name: 'API3'
+			}],
+			triggers: [{
+				name: 'Trigger1'
+			}, {
+				name: 'Trigger2'
+			}, {
+				name: 'Trigger3'
+			}]
 		},
 
 		set: function(data){
