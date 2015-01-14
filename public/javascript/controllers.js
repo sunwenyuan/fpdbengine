@@ -47,38 +47,46 @@ controllers.controller('DashboardController', [
 	}
 ]);
 
-controllers.controller('EditDBController', ['$scope', 'DBDefinition', 'DataSourceList', function($scope, DBDefinition, DataSourceList){
-	$scope.model = {
-		db: DBDefinition.getData(),
-		dataSourceList: DataSourceList.getData()
-	};
+controllers.controller('EditDBController', [
+	'$scope',
+	'DBDefinition',
+	'DataSourceList',
+	'$state',
+	function($scope, DBDefinition, DataSourceList, $state){
+		$scope.model = {
+			db: DBDefinition.getData(),
+			dataSourceList: DataSourceList.getData()
+		};
 
-	$scope.methods = {
-		gotoEditTable: function(table){
+		$scope.methods = {
+			gotoEditTable: function(table){
 
-		},
+			},
 
-		gotoRemoveTable: function(table){},
+			gotoRemoveTable: function(table){},
 
-		gotoAddTable: function(){},
+			gotoAddTable: function(){
+				$state.go('table');
+			},
 
-		gotoEditInterface: function(api){},
+			gotoEditInterface: function(api){},
 
-		gotoRemoveInterface: function(api){},
+			gotoRemoveInterface: function(api){},
 
-		gotoAddInterface: function(api){},
+			gotoAddInterface: function(api){},
 
-		gotoEditTrigger: function(trigger){},
+			gotoEditTrigger: function(trigger){},
 
-		gotoRemoveTrigger: function(trigger){},
+			gotoRemoveTrigger: function(trigger){},
 
-		gotoAddTrigger: function(){},
+			gotoAddTrigger: function(){},
 
-		saveDBDefinition: function(){},
+			saveDBDefinition: function(){},
 
-		cancelDBDefinitionEdit: function(){}
-	};
-}]);
+			cancelDBDefinitionEdit: function(){}
+		};
+	}
+]);
 
 controllers.controller('EditDataSourceController', ['$scope', 'DataSource', function($scope, DataSource){
 	$scope.model = {
@@ -88,4 +96,8 @@ controllers.controller('EditDataSourceController', ['$scope', 'DataSource', func
 	$scope.methods = {
 
 	};
+}]);
+
+controllers.controller('EditTableController', ['$scope', function($scope){
+
 }]);

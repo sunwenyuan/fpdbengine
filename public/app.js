@@ -12,14 +12,19 @@ var app = angular.module('fpdbengine', [
 
 app.config(function($stateProvider, $urlRouterProvider){
     $stateProvider
+        .state('table', {
+            url: '/table',
+            templateUrl: 'views/edit-table.tpl.html',
+            controller: 'EditTableController'
+        })
         .state('datasource', {
               url: '/datasource',
-              templateUrl: 'views/editsource.tpl.html',
+              templateUrl: 'views/edit-source.tpl.html',
               controller: 'EditDataSourceController'
         })
         .state('db', {
             url: '/db',
-            templateUrl: 'views/editdb.tpl.html',
+            templateUrl: 'views/edit-db.tpl.html',
             controller: 'EditDBController'
         });
 });
