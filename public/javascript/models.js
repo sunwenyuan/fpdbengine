@@ -4,6 +4,18 @@
 "use strict";
 var models = angular.module('app-models', []);
 
+models.factory('DataTypeList', [function(){
+	var DataTypeList = {
+		data: ['String', 'Integer', 'Float', 'Decimal', 'Date', 'Boolean'],
+
+		getData: function(){
+			return this.data;
+		}
+	};
+
+	return DataTypeList;
+}]);
+
 models.factory('DataSource', [function(){
 	var DataSource = {
 		data: {
@@ -13,7 +25,7 @@ models.factory('DataSource', [function(){
 			sourcePort: 3306,
 			loginUser: 'root',
 			password: 'root',
-			charset: 'UTF-8',
+			charset: 'UTF-8'
 		},
 
 		set: function(data){
@@ -36,6 +48,42 @@ models.factory('DataSource', [function(){
 	};
 
 	return DataSource;
+}]);
+
+models.factory('TableDefinition', [function(){
+	var TableDefinition = {
+		data: {
+			name: 'Table 1',
+			columns: [{
+				name: 'col1',
+				dataType: 'Integer',
+				length: 4
+			}, {
+				name: 'col2',
+				dataType: 'String',
+				length: 255
+			}]
+		},
+		
+		getData: function(){
+			return this.data;
+		},
+
+		set: function(data){
+			this.data = _.clone(data, true);
+		},
+
+		reset: function(){
+			this.data.name = '';
+			this.data.columns = [];
+		},
+
+		addColumn: function(){},
+
+		removeColumn: function(){}
+	};
+
+	return TableDefinition;
 }]);
 
 models.factory('DBDefinition', [function(){

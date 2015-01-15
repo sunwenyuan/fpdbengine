@@ -98,6 +98,26 @@ controllers.controller('EditDataSourceController', ['$scope', 'DataSource', func
 	};
 }]);
 
-controllers.controller('EditTableController', ['$scope', function($scope){
+controllers.controller('EditTableController', [
+	'$scope',
+	'TableDefinition',
+	'DataTypeList',
+	function($scope, TableDefinition, DataTypeList){
+		$scope.model = {
+			table: TableDefinition.getData(),
+			dataTypeList: DataTypeList.getData()
+		};
 
-}]);
+		$scope.methods = {
+			addColumn: function(){
+
+			},
+
+			removeColumn: function(){},
+
+			saveTable: function(){},
+
+			cancelTableEdit: function(){}
+		};
+	}
+]);

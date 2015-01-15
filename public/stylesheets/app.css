@@ -4,6 +4,6 @@
 .dbconfig-region .content-container {
   padding: 20px;
 }
-.dbconfig-region .content-container td i {
+.dbconfig-region .content-container i {
   cursor: pointer;
 }
