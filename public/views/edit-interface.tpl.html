@@ -1,0 +1,59 @@
+<div id="interface-definition-region" class="with-bottom-border dbconfig-region">
+    <div class="row">
+        <div class="col-md-3">
+            <h3>Interface Name</h3>
+        </div>
+        <div class="col-md-9">
+            <div class="content-container">
+                <input ng-model="model.api.name" type="text" class="form-control"
+                       placeholder="Enter Interface Name">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <h3>URL</h3>
+        </div>
+        <div class="col-md-9">
+            <div class="content-container">
+                <input ng-model="model.api.url" type="text" class="form-control"
+                       placeholder="Enter URL">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <h3>Params</h3>
+        </div>
+        <div class="col-md-9">
+            <div class="content-container">
+                <div class="row" style="margin-bottom: 10px;" ng-repeat="param in model.api.params">
+                    <div class="col-md-4">
+                        <input ng-model="param.name" type="text" class="form-control"
+                               placeholder="Enter Param Name">
+                    </div>
+                    <div class="col-md-1">
+                        <i class="fa fa-2x fa-trash" ng-click="methods.removeParam()"></i>
+                    </div>
+                </div>
+                <button ng-click="methods.addParam()" class="btn btn-default">Add Param</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <h3>Logic</h3>
+        </div>
+        <div class="col-md-9">
+            <div class="content-container">
+                <textarea ng-model="model.api.logic" rows="15" class="form-control" style="resize: none;"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-group" style="padding-top: 20px;">
+    <div class="col-sm-offset-10 col-sm-3">
+        <button type="button" class="btn btn-primary" ng-click="methods.saveInterface()">Save</button>
+        <button type="button" class="btn btn-warning" ng-click="methods.cancelInterfaceEdit()">Cancel</button>
+    </div>
+</div>

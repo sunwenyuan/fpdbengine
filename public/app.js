@@ -17,6 +17,11 @@ app.config(function($stateProvider, $urlRouterProvider){
             templateUrl: 'views/edit-table.tpl.html',
             controller: 'EditTableController'
         })
+        .state('interface', {
+            url: '/api',
+            templateUrl: 'views/edit-interface.tpl.html',
+            controller: 'EditInterfaceController'
+        })
         .state('datasource', {
               url: '/datasource',
               templateUrl: 'views/edit-source.tpl.html',

@@ -73,7 +73,9 @@ controllers.controller('EditDBController', [
 
 			gotoRemoveInterface: function(api){},
 
-			gotoAddInterface: function(api){},
+			gotoAddInterface: function(){
+				$state.go('interface');
+			},
 
 			gotoEditTrigger: function(trigger){},
 
@@ -118,6 +120,26 @@ controllers.controller('EditTableController', [
 			saveTable: function(){},
 
 			cancelTableEdit: function(){}
+		};
+	}
+]);
+
+controllers.controller('EditInterfaceController', [
+	'$scope',
+	'InterfaceDefinition',
+	function($scope, InterfaceDefinition){
+		$scope.model = {
+			api: InterfaceDefinition.getData()
+		};
+
+		$scope.methods = {
+			saveInterface: function(){},
+
+			cancelInterfaceEdit: function(){},
+
+			addParam: function(){},
+
+			removeParam: function(){}
 		};
 	}
 ]);

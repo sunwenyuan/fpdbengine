@@ -86,6 +86,31 @@ models.factory('TableDefinition', [function(){
 	return TableDefinition;
 }]);
 
+models.factory('InterfaceDefinition', [function(){
+	var InterfaceDefinition = {
+		data: {
+			name: 'API1',
+			url: '/api1',
+			params: [{
+				name: 'id'
+			}, {
+				name: 'value'
+			}],
+			logic: ''
+		},
+
+		getData: function(){
+			return this.data;
+		},
+
+		addParam: function(){},
+
+		removeParam: function(){}
+	};
+
+	return InterfaceDefinition;
+}]);
+
 models.factory('DBDefinition', [function(){
 	var DBDefinition = {
 		data: {
