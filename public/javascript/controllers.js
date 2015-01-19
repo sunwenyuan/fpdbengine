@@ -24,7 +24,8 @@ controllers.controller('DashboardController', [
 	'DataSourceList',
 	'DBList',
 	'SelectedPath',
-	function($scope, $state, DataSourceList, DBList, SelectedPath){
+	'DataSource',
+	function($scope, $state, DataSourceList, DBList, SelectedPath, DataSource){
 		$scope.model = {
 			sourceData: DataSourceList.getData(),
 			dbData: DBList.getData(),
@@ -41,6 +42,7 @@ controllers.controller('DashboardController', [
 			},
 
 			gotoAddDataSource: function(){
+				DataSource.reset();
 				$state.go('datasource');
 			}
 		};
@@ -92,11 +94,17 @@ controllers.controller('EditDBController', [
 
 controllers.controller('EditDataSourceController', ['$scope', 'DataSource', function($scope, DataSource){
 	$scope.model = {
-		dataSource: DataSource.getData()
+		dataSource: _.clone(DataSource.getData(), true)
 	};
 
 	$scope.methods = {
+		saveDataSource: function(){
+			DataSource.set($scope.model.dataSource);
+		},
 
+		resetDataSource: function(){
+			$scope.model.dataSource = _.clone(DataSource.getData(), true);
+		}
 	};
 }]);
 

@@ -29,7 +29,12 @@ models.factory('DataSource', [function(){
 		},
 
 		set: function(data){
-			this.data = _.clone(data, true);
+			if(data === undefined || data === null){
+				this.reset();
+			}
+			else{
+				this.data = _.clone(data, true);
+			}
 		},
 
 		reset: function(){
