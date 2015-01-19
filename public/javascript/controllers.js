@@ -92,21 +92,32 @@ controllers.controller('EditDBController', [
 	}
 ]);
 
-controllers.controller('EditDataSourceController', ['$scope', 'DataSource', function($scope, DataSource){
-	$scope.model = {
-		dataSource: _.clone(DataSource.getData(), true)
-	};
+controllers.controller('EditDataSourceController', [
+	'$scope',
+	'DataSource',
+	'DataSourceResource',
+	function($scope, DataSource, DataSourceResource){
+		$scope.model = {
+			dataSource: _.clone(DataSource.getData(), true)
+		};
 
-	$scope.methods = {
-		saveDataSource: function(){
-			DataSource.set($scope.model.dataSource);
-		},
+		$scope.methods = {
+			saveDataSource: function(){
+				DataSource.set($scope.model.dataSource);
+				DataSourceResource
+					.save($scope.model.dataSource)
+					.$promise
+					.then(function(){}, function(){});
+			},
 
-		resetDataSource: function(){
-			$scope.model.dataSource = _.clone(DataSource.getData(), true);
-		}
-	};
-}]);
+			resetDataSource: function(){
+				$scope.model.dataSource = _.clone(DataSource.getData(), true);
+			},
+
+			removeDataSource: function(){}
+		};
+	}
+]);
 
 controllers.controller('EditTableController', [
 	'$scope',
