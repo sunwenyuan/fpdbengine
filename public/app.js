@@ -7,7 +7,8 @@ var app = angular.module('fpdbengine', [
     'app-controllers',
     'ui.router',
     'app-directives',
-    'app-models'
+    'app-models',
+	'app-resources'
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider){
