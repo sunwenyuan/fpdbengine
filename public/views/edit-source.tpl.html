@@ -55,7 +55,8 @@
         <div class="col-sm-offset-8 col-sm-4">
             <button type="button" class="btn btn-primary" ng-click="methods.saveDataSource()">Save</button>
             <button type="button" class="btn btn-warning" ng-click="methods.resetDataSource()">Reset</button>
-            <button type="button" class="btn btn-danger" ng-click="methods.removeDataSource()">Delete</button>
+            <button ng-disabled="methods.removeBtnDisabled()" type="button" class="btn btn-danger" ng-click="methods.removeDataSource()">Delete
+            </button>
         </div>
     </div>
 </form>

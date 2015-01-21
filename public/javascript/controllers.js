@@ -25,7 +25,8 @@ controllers.controller('DashboardController', [
 	'DBList',
 	'SelectedPath',
 	'DataSource',
-	function($scope, $state, DataSourceList, DBList, SelectedPath, DataSource){
+	'DataSourceResource',
+	function($scope, $state, DataSourceList, DBList, SelectedPath, DataSource, DataSourceResource){
 		$scope.model = {
 			sourceData: DataSourceList.getData(),
 			dbData: DBList.getData(),
@@ -35,7 +36,6 @@ controllers.controller('DashboardController', [
 		$scope.model.dbTree = {};
 		$scope.model.sourceTree = {};
 
-
 		$scope.methods = {
 			gotoAddDatabase: function(){
 				$state.go('db');
@@ -44,6 +44,19 @@ controllers.controller('DashboardController', [
 			gotoAddDataSource: function(){
 				DataSource.reset();
 				$state.go('datasource');
+			},
+
+			sourceTreeSelectHandler: function(branch){
+				var sourceName = branch.label;
+				DataSourceResource
+					.get({sourceName: sourceName})
+					.$promise
+					.then(function(response){
+						DataSource.set(response);
+						$state.go('datasource');
+					}, function(){
+						alert('Data source not found!');
+					});
 			}
 		};
 	}
@@ -94,27 +107,66 @@ controllers.controller('EditDBController', [
 
 controllers.controller('EditDataSourceController', [
 	'$scope',
+	'$state',
 	'DataSource',
 	'DataSourceResource',
-	function($scope, DataSource, DataSourceResource){
+	function($scope, $state, DataSource, DataSourceResource){
 		$scope.model = {
 			dataSource: _.clone(DataSource.getData(), true)
 		};
 
 		$scope.methods = {
 			saveDataSource: function(){
-				DataSource.set($scope.model.dataSource);
-				DataSourceResource
-					.save($scope.model.dataSource)
-					.$promise
-					.then(function(){}, function(){});
+				if(DataSource.get('sourceName') === ''){
+					DataSourceResource
+						.save($scope.model.dataSource)
+						.$promise
+						.then(function(){
+							DataSource.set($scope.model.dataSource);
+						}, function(){
+							alert('Save data source failed!');
+						});
+				}
+				else{
+					DataSourceResource
+						.modify({
+							oldSourceName: DataSource.get('sourceName'),
+							data: $scope.model.dataSource
+						})
+						.$promise
+						.then(function(){
+							DataSource.set($scope.model.dataSource);
+						}, function(){
+							alert('Modify data source failed!');
+						});
+				}
 			},
 
 			resetDataSource: function(){
 				$scope.model.dataSource = _.clone(DataSource.getData(), true);
 			},
 
-			removeDataSource: function(){}
+			removeDataSource: function(){
+				var sourceName = DataSource.get('sourceName');
+				DataSourceResource
+					.remove({sourceName: sourceName})
+					.$promise
+					.then(function(){
+						DataSource.reset();
+						$state.go('datasource');
+					}, function(){
+						alert('Remove data source failed!');
+					});
+			},
+
+			removeBtnDisabled: function(){
+				if(DataSource.get('sourceName') === ''){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
 		};
 	}
 ]);

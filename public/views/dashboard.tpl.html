@@ -28,7 +28,8 @@
                             Add Data Source
                         </button>
                         <abn-tree tree-data="model.sourceData" icon-leaf="fa fa-file-text-o"
-                                  tree-control="model.sourceTree"></abn-tree>
+                                  tree-control="model.sourceTree"
+                                  on-select="methods.sourceTreeSelectHandler(branch)"></abn-tree>
                     </div>
                 </div>
             </div>

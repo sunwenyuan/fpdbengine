@@ -34,7 +34,17 @@ models.factory('DataSource', [function(){
 			}
 			else{
 				this.data = _.clone(data, true);
+				if(this.data.$resolved !== undefined){
+					delete this.data.$resolved;
+				}
+				if(this.data.$promise !== undefined){
+					delete this.data.$promise;
+				}
 			}
+		},
+
+		get: function(paramName){
+			return this.data[paramName];
 		},
 
 		reset: function(){
