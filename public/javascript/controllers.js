@@ -20,13 +20,14 @@ controllers.controller('LoginController', ['$scope', 'GlobalCache', function($sc
 
 controllers.controller('DashboardController', [
 	'$scope',
+	'$rootScope',
 	'$state',
 	'DataSourceList',
 	'DBList',
 	'SelectedPath',
 	'DataSource',
 	'DataSourceResource',
-	function($scope, $state, DataSourceList, DBList, SelectedPath, DataSource, DataSourceResource){
+	function($scope, $rootScope, $state, DataSourceList, DBList, SelectedPath, DataSource, DataSourceResource){
 		$scope.model = {
 			sourceData: DataSourceList.getData(),
 			dbData: DBList.getData(),
@@ -41,10 +42,13 @@ controllers.controller('DashboardController', [
 			.$promise
 			.then(function(response){
 				DataSourceList.set(response);
-				$scope.model.sourceData = DataSourceList.getData();
 			}, function(){
 				alert('Get data source list failed!');
 			});
+
+		$scope.$on('datasourceListUpdated', function(){
+			$scope.model.sourceData = DataSourceList.getData();
+		});
 
 		$scope.methods = {
 			gotoAddDatabase: function(){
