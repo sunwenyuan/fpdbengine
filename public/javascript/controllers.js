@@ -114,7 +114,18 @@ controllers.controller('EditDBController', [
 
 			saveDBDefinition: function(){},
 
-			cancelDBDefinitionEdit: function(){}
+			cancelDBDefinitionEdit: function(){},
+
+			removeDB: function(){},
+
+			removeBtnDisabled: function(){
+				if(DBDefinition.get('def').dbName === ''){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
 		};
 	}
 ]);

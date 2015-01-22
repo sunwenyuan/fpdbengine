@@ -91,5 +91,7 @@
     <div class="col-sm-offset-10 col-sm-3">
         <button type="button" class="btn btn-primary" ng-click="methods.saveDBDefinition()">Save</button>
         <button type="button" class="btn btn-warning" ng-click="methods.cancelDBDefinitionEdit()">Cancel</button>
+        <button ng-disabled="methods.removeBtnDisabled()" type="button" class="btn btn-danger" ng-click="methods.removeDB()">Delete
+        </button>
     </div>
 </div>

@@ -160,6 +160,10 @@ models.factory('DBDefinition', [function(){
 			this.data = _.clone(data, true);
 		},
 
+		get: function(param){
+			return this.data[param];
+		},
+
 		reset: function(){
 			this.data = {
 				def: {
