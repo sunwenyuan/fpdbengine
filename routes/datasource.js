@@ -2,6 +2,7 @@
 
 var express = require('express');
 var fs = require('fs');
+var _ = require('lodash');
 var router = express.Router();
 var outputFolderPath = __dirname+'/../output/datasources/';
 var dataSourceFileExt = 'ds';
@@ -67,6 +68,27 @@ router.delete('/:sourceName', function(req, res){
 		}
 		res.statusCode = 200;
 		res.end();
+	});
+});
+
+router.get('/get/list', function(req, res){
+	fs.readdir(outputFolderPath, function(err, files){
+		if(err){
+			res.statusCode = 400;
+			res.end();
+		}
+		else{
+			var data = [];
+			_.forEach(files, function(file){
+				if(file !== '.keep' && file.substring((file.length-2), file.length) === dataSourceFileExt){
+					data.push({
+						label: file.substring(0, (file.length - 3))
+					});
+				}
+			});
+			res.json(data);
+			res.end();
+		}
 	});
 });
 

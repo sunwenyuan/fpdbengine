@@ -36,6 +36,16 @@ controllers.controller('DashboardController', [
 		$scope.model.dbTree = {};
 		$scope.model.sourceTree = {};
 
+		DataSourceResource
+			.getList()
+			.$promise
+			.then(function(response){
+				DataSourceList.set(response);
+				$scope.model.sourceData = DataSourceList.getData();
+			}, function(){
+				alert('Get data source list failed!');
+			});
+
 		$scope.methods = {
 			gotoAddDatabase: function(){
 				$state.go('db');

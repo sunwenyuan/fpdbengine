@@ -21,6 +21,12 @@ resources.factory('DataSourceResource', ['$resource', function($resource){
 		modify: {
 			method: 'PUT',
 			url: '/datasource'
+		},
+
+		getList: {
+			method: 'GET',
+			url: '/datasource/get/list',
+			isArray: true
 		}
 	});
 }]);

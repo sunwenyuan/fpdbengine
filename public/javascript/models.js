@@ -231,7 +231,14 @@ models.factory('DataSourceList', [function(){
 		},
 
 		set: function(list){
-			this.data = list;
+			console.info(list);
+			this.data = [];
+			_.forEach(list, function(item){
+				this.data.push({
+					label: item.label
+				});
+			}, this);
+			console.info(this.data);
 		}
 	};
 
