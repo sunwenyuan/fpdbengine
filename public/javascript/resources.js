@@ -10,7 +10,7 @@ resources.factory('DataSourceResource', ['$resource', function($resource){
 
 		remove: {
 			method: 'DELETE',
-			url: '/datasource/:name'
+			url: '/datasource/:sourceName'
 		},
 
 		get: {
@@ -32,13 +32,25 @@ resources.factory('DataSourceResource', ['$resource', function($resource){
 }]);
 
 resources.factory('DatabaseResource', ['$resource', function($resource){
+	return $resource('/db', {}, {
+		save: {
+			method: 'POST',
+			url: '/db'
+		},
 
-}]);
+		remove: {
+			method: 'DELETE',
+			url: '/db/:dbName'
+		},
 
-resources.factory('DataSourceListResource', ['$resource', function($resource){
+		get: {
+			method: 'GET',
+			url: '/db/:dbName'
+		},
 
-}]);
-
-resources.factory('DatabaseListResource', ['$resource', function($resource){
-
+		modify: {
+			method: 'PUT',
+			url: '/db'
+		}
+	});
 }]);

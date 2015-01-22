@@ -7,7 +7,6 @@ var router = express.Router();
 var outputFolderPath = __dirname+'/../output/datasources/';
 var dataSourceFileExt = 'ds';
 
-/* GET users listing. */
 router.post('/', function(req, res) {
 	var dataSource = req.body;
 	var filePath = outputFolderPath+dataSource.sourceName+'.'+dataSourceFileExt;
