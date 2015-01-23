@@ -33,7 +33,7 @@
                         <i ng-click="methods.gotoEditTable(table)" class="fa fa-2x fa-edit"></i>
                     </div>
                     <div class="col-md-2">
-                        <i ng-click="methods.gotoRemoveTable(table)" class="fa fa-2x fa-trash"></i>
+                        <i ng-click="methods.gotoRemoveTable($index)" class="fa fa-2x fa-trash"></i>
                     </div>
                 </div>
                 <button ng-click="methods.gotoAddTable()" class="btn btn-default">Add Table</button>
@@ -88,7 +88,7 @@
     </div>
 </div>
 <div class="form-group" style="padding-top: 20px;">
-    <div class="col-sm-offset-10 col-sm-3">
+    <div class="col-sm-offset-8 col-sm-3">
         <button type="button" class="btn btn-primary" ng-click="methods.saveDBDefinition()">Save</button>
         <button type="button" class="btn btn-warning" ng-click="methods.cancelDBDefinitionEdit()">Cancel</button>
         <button ng-disabled="methods.removeBtnDisabled()" type="button" class="btn btn-danger" ng-click="methods.removeDB()">Delete

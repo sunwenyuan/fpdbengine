@@ -69,3 +69,5 @@ router.delete('/:dbName', function(req, res){
 		res.end();
 	});
 });
+
+module.exports = router;

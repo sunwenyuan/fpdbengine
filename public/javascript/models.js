@@ -68,16 +68,8 @@ models.factory('DataSource', [function(){
 models.factory('TableDefinition', [function(){
 	var TableDefinition = {
 		data: {
-			name: 'Table 1',
-			columns: [{
-				name: 'col1',
-				dataType: 'Integer',
-				length: 4
-			}, {
-				name: 'col2',
-				dataType: 'String',
-				length: 255
-			}]
+			name: '',
+			columns: []
 		},
 		
 		getData: function(){
@@ -85,7 +77,11 @@ models.factory('TableDefinition', [function(){
 		},
 
 		set: function(data){
-			this.data = _.clone(data, true);
+			this.data = _.cloneDeep(data);
+		},
+
+		get: function(param){
+			return this.data[param];
 		},
 
 		reset: function(){
@@ -94,6 +90,14 @@ models.factory('TableDefinition', [function(){
 		},
 
 		addColumn: function(){},
+
+		getDefaultColumn: function(){
+			return {
+				name: '',
+				dataType: 'Integer',
+				length: 4
+			};
+		},
 
 		removeColumn: function(){}
 	};
@@ -130,30 +134,12 @@ models.factory('DBDefinition', [function(){
 	var DBDefinition = {
 		data: {
 			def: {
-				dbName: 'DB1',
-				dataSourceName: 'Data Source 1'
+				dbName: '',
+				dataSourceName: ''
 			},
-			tables: [{
-				name: 'Table 1'
-			}, {
-				name: 'Table 2'
-			}, {
-				name: 'Table 3'
-			}],
-			interfaces: [{
-				name: 'API1'
-			}, {
-				name: 'API2'
-			}, {
-				name: 'API3'
-			}],
-			triggers: [{
-				name: 'Trigger1'
-			}, {
-				name: 'Trigger2'
-			}, {
-				name: 'Trigger3'
-			}]
+			tables: [],
+			interfaces: [],
+			triggers: []
 		},
 
 		set: function(data){
@@ -190,6 +176,29 @@ models.factory('DBDefinition', [function(){
 
 		getTriggerByName: function(triggerName){
 
+		},
+
+		updateTable: function(oldTableName, tableData){
+			var tables = this.get('tables');
+			_.forEach(tables, function(table){
+				if(table.name === oldTableName){
+					table.name = tableData.name;
+					table.columns = _.cloneDeep(tableData.columns);
+					return false;
+				}
+			}, this);
+		},
+
+		addTable: function(tableData){
+			var tables = this.get('tables');
+			tables.push(tableData);
+		},
+
+		removeTableByIndex: function(tableIndex){
+			var tables = this.get('tables');
+			_.remove(tables, function(table, index){
+				return index === tableIndex;
+			});
 		}
 	};
 

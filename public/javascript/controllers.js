@@ -27,7 +27,8 @@ controllers.controller('DashboardController', [
 	'SelectedPath',
 	'DataSource',
 	'DataSourceResource',
-	function($scope, $rootScope, $state, DataSourceList, DBList, SelectedPath, DataSource, DataSourceResource){
+	'DBDefinition',
+	function($scope, $rootScope, $state, DataSourceList, DBList, SelectedPath, DataSource, DataSourceResource, DBDefinition){
 		$scope.model = {
 			sourceData: DataSourceList.getData(),
 			dbData: DBList.getData(),
@@ -52,6 +53,7 @@ controllers.controller('DashboardController', [
 
 		$scope.methods = {
 			gotoAddDatabase: function(){
+				DBDefinition.reset();
 				$state.go('db');
 			},
 
@@ -81,7 +83,8 @@ controllers.controller('EditDBController', [
 	'DBDefinition',
 	'DataSourceList',
 	'$state',
-	function($scope, DBDefinition, DataSourceList, $state){
+	'TableDefinition',
+	function($scope, DBDefinition, DataSourceList, $state, TableDefinition){
 		$scope.model = {
 			db: DBDefinition.getData(),
 			dataSourceList: DataSourceList.getData()
@@ -89,12 +92,16 @@ controllers.controller('EditDBController', [
 
 		$scope.methods = {
 			gotoEditTable: function(table){
-
+				TableDefinition.set(table);
+				$state.go('table');
 			},
 
-			gotoRemoveTable: function(table){},
+			gotoRemoveTable: function(tableIndex){
+				DBDefinition.removeTableByIndex(tableIndex);
+			},
 
 			gotoAddTable: function(){
+				TableDefinition.reset();
 				$state.go('table');
 			},
 
@@ -198,24 +205,46 @@ controllers.controller('EditDataSourceController', [
 
 controllers.controller('EditTableController', [
 	'$scope',
+	'$state',
 	'TableDefinition',
 	'DataTypeList',
-	function($scope, TableDefinition, DataTypeList){
+	'DBDefinition',
+	function($scope, $state, TableDefinition, DataTypeList, DBDefinition){
 		$scope.model = {
-			table: TableDefinition.getData(),
+			table: _.cloneDeep(TableDefinition.getData()),
 			dataTypeList: DataTypeList.getData()
 		};
 
 		$scope.methods = {
 			addColumn: function(){
-
+				$scope.model.table.columns.push(TableDefinition.getDefaultColumn());
 			},
 
-			removeColumn: function(){},
+			removeColumn: function(columnIndex){
+				_.remove($scope.model.table.columns, function(column, index){
+					return index === columnIndex;
+				});
+			},
 
-			saveTable: function(){},
+			saveTable: function(){
+				var oldTableName = TableDefinition.get('name');
+				TableDefinition.set($scope.model.table);
+				if(oldTableName === ''){
+					DBDefinition.addTable(TableDefinition.getData());
+				}
+				else{
+					DBDefinition.updateTable(oldTableName, TableDefinition.getData());
+				}
+				$state.go('db');
+			},
 
-			cancelTableEdit: function(){}
+			cancelTableEdit: function(){
+				$state.go('db');
+			},
+
+			resetTableEdit: function(){
+				$scope.model.table = _.cloneDeep(TableDefinition.getData());
+			}
 		};
 	}
 ]);

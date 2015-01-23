@@ -32,7 +32,7 @@
                                placeholder="Enter Length">
                     </div>
                     <div class="col-md-1">
-                        <i class="fa fa-2x fa-trash" ng-click="methods.removeColumn()"></i>
+                        <i class="fa fa-2x fa-trash" ng-click="methods.removeColumn($index)"></i>
                     </div>
                 </div>
                 <button ng-click="methods.addColumn()" class="btn btn-default">Add Column</button>
@@ -41,8 +41,9 @@
     </div>
 </div>
 <div class="form-group" style="padding-top: 20px;">
-    <div class="col-sm-offset-10 col-sm-3">
+    <div class="col-sm-offset-8 col-sm-3">
         <button type="button" class="btn btn-primary" ng-click="methods.saveTable()">Save</button>
         <button type="button" class="btn btn-warning" ng-click="methods.cancelTableEdit()">Cancel</button>
+        <button type="button" class="btn btn-danger" ng-click="methods.resetTableEdit()">Reset</button>
     </div>
 </div>
