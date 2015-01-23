@@ -2,3 +2,4 @@
 node_modules/*
 public/bower_components/*
 output/datasources/*.ds
+output/databases/*.db

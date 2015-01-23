@@ -10,7 +10,7 @@
         <div class="form-group">
             <label for="dbType" class="col-sm-2 control-label">Database Type</label>
             <div class="col-sm-10">
-                <select ng-options="dataSource.label for dataSource in model.dataSourceList"
+                <select ng-options="dataSource.label as dataSource.label for dataSource in model.dataSourceList"
                         ng-model="model.db.def.dataSourceName" id="dbType"
                         class="form-control">
                 </select>
@@ -90,7 +90,7 @@
 <div class="form-group" style="padding-top: 20px;">
     <div class="col-sm-offset-8 col-sm-3">
         <button type="button" class="btn btn-primary" ng-click="methods.saveDBDefinition()">Save</button>
-        <button type="button" class="btn btn-warning" ng-click="methods.cancelDBDefinitionEdit()">Cancel</button>
+        <button type="button" class="btn btn-warning" ng-click="methods.resetDBDefinitionEdit()">Reset</button>
         <button ng-disabled="methods.removeBtnDisabled()" type="button" class="btn btn-danger" ng-click="methods.removeDB()">Delete
         </button>
     </div>

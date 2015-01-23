@@ -84,9 +84,10 @@ controllers.controller('EditDBController', [
 	'DataSourceList',
 	'$state',
 	'TableDefinition',
-	function($scope, DBDefinition, DataSourceList, $state, TableDefinition){
+	'DatabaseResource',
+	function($scope, DBDefinition, DataSourceList, $state, TableDefinition, DatabaseResource){
 		$scope.model = {
-			db: DBDefinition.getData(),
+			db: _.cloneDeep(DBDefinition.getData()),
 			dataSourceList: DataSourceList.getData()
 		};
 
@@ -119,9 +120,26 @@ controllers.controller('EditDBController', [
 
 			gotoAddTrigger: function(){},
 
-			saveDBDefinition: function(){},
+			saveDBDefinition: function(){
+				if(DBDefinition.get('def').dbName === ''){
+					//Create new db definition.
+					DatabaseResource
+						.save($scope.model.db)
+						.$promise
+						.then(function(){
 
-			cancelDBDefinitionEdit: function(){},
+						}, function(){
+							alert('Create DB failed.');
+						});
+				}
+				else{
+					//Update db definition.
+				}
+			},
+
+			resetDBDefinitionEdit: function(){
+				$scope.model.db = _.cloneDeep(DBDefinition.getData());
+			},
 
 			removeDB: function(){},
 
@@ -150,16 +168,18 @@ controllers.controller('EditDataSourceController', [
 		$scope.methods = {
 			saveDataSource: function(){
 				if(DataSource.get('sourceName') === ''){
+					//Create new data source definition.
 					DataSourceResource
 						.save($scope.model.dataSource)
 						.$promise
 						.then(function(){
 							DataSource.set($scope.model.dataSource);
 						}, function(){
-							alert('Save data source failed!');
+							alert('Create data source failed!');
 						});
 				}
 				else{
+					//Update data source definition.
 					DataSourceResource
 						.modify({
 							oldSourceName: DataSource.get('sourceName'),
