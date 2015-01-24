@@ -80,12 +80,13 @@ controllers.controller('DashboardController', [
 
 controllers.controller('EditDBController', [
 	'$scope',
+	'$http',
 	'DBDefinition',
 	'DataSourceList',
 	'$state',
 	'TableDefinition',
 	'DatabaseResource',
-	function($scope, DBDefinition, DataSourceList, $state, TableDefinition, DatabaseResource){
+	function($scope, $http, DBDefinition, DataSourceList, $state, TableDefinition, DatabaseResource){
 		$scope.model = {
 			db: _.cloneDeep(DBDefinition.getData()),
 			dataSourceList: DataSourceList.getData()
@@ -150,6 +151,13 @@ controllers.controller('EditDBController', [
 				else{
 					return false;
 				}
+			},
+
+			generateCode: function(){
+				$http
+					.get('/dbcode/db1')
+					.success(function(){})
+					.error(function(){});
 			}
 		};
 	}

@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var datasource = require('./routes/datasource');
 var database = require('./routes/database');
+var dbcode = require('./routes/dbcode');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use('/users', users);
 
 app.use('/datasource', datasource);
 app.use('/db', database);
+app.use('/dbcode', dbcode);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
